@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build macOS app
+        run: |
+          set -e
+          xcodebuild \
+            -project "ml-fastvlm/app/FastVLM.xcodeproj" \
+            -scheme "FastVLM App" \
+            -configuration Release \
+            -destination 'platform=macOS' \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+      - name: Package .app
+        id: package
+        run: |
+          APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData -path '*Build/Products/Release/*.app' -maxdepth 6 -type d | head -n 1)
+          if [ -z "$APP_PATH" ]; then echo "No app built"; exit 1; fi
+          ZIP_NAME="$(basename "$APP_PATH").zip"
+          ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "$ZIP_NAME"
+          echo "asset=$ZIP_NAME" >> $GITHUB_OUTPUT
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ steps.package.outputs.asset }}
