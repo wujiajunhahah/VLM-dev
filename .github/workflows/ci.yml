@@ -16,9 +16,9 @@ jobs:
         run: |
           xcodebuild -version
           xcode-select -p
-          xcrun simctl list devices | head -n 30
+          xcodebuild -showsdks || true
 
-      - name: Build iOS (Simulator)
+      - name: Build iOS (Simulator, generic destination)
         run: |
           set -euo pipefail
           xcodebuild \
@@ -26,7 +26,7 @@ jobs:
             -scheme "FastVLM App" \
             -configuration Release \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            -destination 'generic/platform=iOS Simulator' \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_IDENTITY="" \

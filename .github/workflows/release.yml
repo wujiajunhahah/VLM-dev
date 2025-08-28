@@ -13,7 +13,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build iOS (Simulator)
+
+      - name: Build iOS (Simulator, generic destination)
         run: |
           set -euo pipefail
           xcodebuild \
@@ -21,11 +22,12 @@ jobs:
             -scheme "FastVLM App" \
             -configuration Release \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            -destination 'generic/platform=iOS Simulator' \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_IDENTITY="" \
             build
+
       - name: Archive .app (Simulator)
         id: package
         run: |
