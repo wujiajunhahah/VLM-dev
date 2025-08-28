@@ -11,13 +11,36 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Show Xcode and environment info
+        run: |
+          set -euo pipefail
+          xcodebuild -version
+          xcode-select -p
+          sw_vers
+          system_profiler SPSoftwareDataType | head -n 20
+          ls -la "ml-fastvlm/app" || true
+
+      - name: List schemes and destinations
+        run: |
+          set -euo pipefail
+          xcodebuild -list -project "ml-fastvlm/app/FastVLM.xcodeproj" || true
+          xcodebuild -showBuildSettings -project "ml-fastvlm/app/FastVLM.xcodeproj" -scheme "FastVLM App" | head -n 200 || true
+          xcodebuild -showdestinations -project "ml-fastvlm/app/FastVLM.xcodeproj" -scheme "FastVLM App" || true
+
       - name: Build macOS app
         run: |
-          set -e
+          set -euo pipefail
           xcodebuild \
             -project "ml-fastvlm/app/FastVLM.xcodeproj" \
             -scheme "FastVLM App" \
             -configuration Release \
             -destination 'platform=macOS' \
             CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
+            ENABLE_HARDENED_RUNTIME=NO \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            ONLY_ACTIVE_ARCH=YES \
             build
