@@ -1,33 +1,18 @@
 name: CI (iOS)
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build-ios-simulator:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Restore SwiftPM and DerivedData cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/Library/Caches/org.swift.swiftpm
-            ~/Library/Developer/Xcode/DerivedData
-          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
-          restore-keys: |
-            ${{ runner.os }}-spm-
-
       - name: Xcode env
         run: |
           xcodebuild -version
           xcode-select -p
           xcodebuild -showsdks || true
-
       - name: Build iOS (Simulator, generic destination)
         run: |
           set -euo pipefail
@@ -41,13 +26,3 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_IDENTITY="" \
             build
-
-      - name: Upload DerivedData on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: DerivedData
-          path: |
-            ~/Library/Developer/Xcode/DerivedData/**/Logs/Build/*.xcactivitylog
-            ~/Library/Developer/Xcode/DerivedData
-          if-no-files-found: ignore
