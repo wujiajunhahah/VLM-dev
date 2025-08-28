@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+# Thumbnails
+._*
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+.env
+.env.*
+# Swift/Xcode
+DerivedData/
+*.xcworkspace/
+xcuserdata/
+*.xcbkptlist
+*.xccheckout
+*.xcuserstate
+# Build artifacts
+build/
+Build/
+*.o
+*.a
+*.dylib
+*.framework
+# Node
+node_modules/
+# Model & large assets
+*.pt
+*.bin
+*.safetensors
+models/
+checkpoints/
+*.mlmodelc
+*.mlpackage
+# Logs
+*.log
+
