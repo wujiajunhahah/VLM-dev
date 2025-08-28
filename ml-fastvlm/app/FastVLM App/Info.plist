@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSCameraUsageDescription</key>
+    <string>需要使用相机以定时拍摄并进行视觉分析与emoji提取。</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>保存空间照片/快照到相册以便查看与分享。</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>读取相册中的照片以显示空间相册与预览。</string>
+    <key>NSWorldSensingUsageDescription</key>
+    <string>使用 LiDAR/摄像头扫描周围环境，以进行3D场景重建与回顾。</string>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>arkit</string>
+    </array>
+</dict>
+</plist>
