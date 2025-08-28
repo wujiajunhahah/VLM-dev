@@ -14,6 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Restore SwiftPM and DerivedData cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
       - name: Build iOS (Simulator, generic destination)
         run: |
           set -euo pipefail
@@ -36,6 +46,13 @@ jobs:
           ZIP_NAME="$(basename "$APP_PATH").zip"
           ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "$ZIP_NAME"
           echo "asset=$ZIP_NAME" >> $GITHUB_OUTPUT
+
+      - name: Upload artifact (Simulator .app zip)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.package.outputs.asset }}
+          path: ${{ steps.package.outputs.asset }}
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
