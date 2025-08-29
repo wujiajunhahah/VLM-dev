@@ -1,21 +1,79 @@
-# VLM-dev
+# 🎯 SmartScene - WWDC 2025 智能场景捕捉应用
 
-一个视觉语言模型（VLM）项目，包含 iOS 本地演示与 Python 推理/服务。
+> 用AI重新定义你的视觉记忆
 
-## iOS 真机运行
-1. 用 Xcode 打开 `ml-fastvlm/app/FastVLM.xcodeproj`
-2. 选择你的 iPhone 设备，设置签名团队（Team）
-3. 直接运行（Cmd+R）
+## 🌟 项目简介
 
-## Python 推理（可选）
+SmartScene 是一个专为 WWDC 2025 设计的创新iOS应用，利用先进的计算机视觉和机器学习技术，为用户提供智能化的场景捕捉与回顾体验。
+
+## ✨ 核心功能
+
+### 🎥 智能场景捕捉
+- **一键捕捉**: 点击相机按钮即可智能分析当前场景
+- **AI描述**: 使用FastVLM模型自动生成场景描述
+- **实时处理**: 快速响应的场景分析体验
+
+### 📱 简洁界面
+- **极简设计**: 专注于核心功能，去除冗余操作
+- **流畅体验**: 优化的用户界面和交互设计
+- **直观操作**: 一目了然的功能布局
+
+### 🎯 WWDC 特色
+- **技术创新**: 集成最新的MLX框架和FastVLM模型
+- **性能优化**: 针对iOS设备优化的AI推理性能
+- **未来感**: 符合WWDC创新精神的用户体验
+
+## 🛠 技术栈
+
+- **SwiftUI**: 现代化的UI框架
+- **MLX**: Apple的机器学习框架
+- **FastVLM**: 高效的视觉语言模型
+- **ARKit**: 增强现实技术支持
+- **AVFoundation**: 相机和媒体处理
+
+## 📱 系统要求
+
+- iOS 18.0+
+- iPhone 12 或更新机型
+- 支持ARKit的设备
+
+## 🚀 快速开始
+
+1. 克隆项目
 ```bash
-cd ml-fastvlm
-python3 -m venv .venv && source .venv/bin/activate
-pip install -e .
-python predict.py
+git clone https://github.com/yourusername/smartscene-wwdc2025.git
 ```
 
-## 目录
-- `ml-fastvlm/app/FastVLM App`: SwiftUI iOS/macOS 应用
-- `ml-fastvlm/llava`: Python LLaVA 实现
-- `.github/workflows`: CI/Release 配置（默认手动触发）
+2. 打开Xcode项目
+```bash
+open ml-fastvlm/app/FastVLM.xcodeproj
+```
+
+3. 选择目标设备并运行
+
+## 🎮 使用方法
+
+1. **启动应用**: 打开SmartScene应用
+2. **开始捕捉**: 点击右上角的相机按钮
+3. **查看结果**: 在历史记录中查看捕捉的场景
+4. **重复使用**: 继续捕捉更多精彩瞬间
+
+## 🎯 WWDC 2025 目标
+
+这个项目旨在展示：
+- 如何将先进的AI技术融入日常应用
+- 创新的用户交互设计
+- 高性能的移动端AI推理
+- 符合Apple设计规范的用户体验
+
+## 📄 许可证
+
+MIT License - 详见 [LICENSE](LICENSE) 文件
+
+## 🤝 贡献
+
+欢迎提交Issue和Pull Request！
+
+---
+
+**为WWDC 2025而生，用AI重新定义视觉记忆** 🚀
