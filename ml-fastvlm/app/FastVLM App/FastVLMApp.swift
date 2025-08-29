@@ -10,7 +10,7 @@ struct FastVLMApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                SmartCaptureView()
+                SimpleCaptureView()
             }
         }
     }
