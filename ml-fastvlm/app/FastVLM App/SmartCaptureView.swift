@@ -8,6 +8,7 @@ import AVFoundation
 import MLXLMCommon
 import ARKit
 import RealityKit
+import Video
 
 @MainActor
 final class SmartCaptureViewModel: ObservableObject {

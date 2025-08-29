@@ -186,9 +186,11 @@ public class CameraController: NSObject {
         if captureSession.canAddOutput(photoOutput) {
             captureSession.addOutput(photoOutput)
             // Enable depth delivery when supported
+            #if os(iOS)
             if photoOutput.isDepthDataDeliverySupported {
                 photoOutput.isDepthDataDeliveryEnabled = true
             }
+            #endif
             self.photoOutput = photoOutput
         }
 
@@ -221,9 +223,11 @@ extension CameraController: AVCapturePhotoCaptureDelegate {
             guard let self, let photoOutput = self.photoOutput else { return }
 
             let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
+            #if os(iOS)
             if photoOutput.isDepthDataDeliverySupported {
                 settings.isDepthDataDeliveryEnabled = true
             }
+            #endif
             // High-resolution if available
             settings.isHighResolutionPhotoEnabled = photoOutput.isHighResolutionCaptureEnabled
 

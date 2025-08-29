@@ -4,7 +4,9 @@
 //
 
 import Foundation
+#if os(iOS)
 import ARKit
+#endif
 
 enum SceneMeshExporterError: Error {
     case emptyMesh
