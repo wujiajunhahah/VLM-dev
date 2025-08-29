@@ -31,6 +31,11 @@ struct ContentView: View {
 
     @State private var selectedCameraType: CameraType = .continuous
     @State private var isEditingPrompt: Bool = false
+    @State private var isEmojiMode: Bool = false
+    @State private var emojiStore = EmojiLogStore()
+    @State private var timedRunning: Bool = false
+    @State private var timedTask: Task<Void, Never>? = nil
+    @State private var timedIntervalSeconds: Double = 30
 
     var toolbarItemPlacement: ToolbarItemPlacement {
         var placement: ToolbarItemPlacement = .navigation

@@ -1,0 +1,22 @@
+# VLM-dev
+
+这是一个视觉语言模型（VLM）项目，包含 iOS/macOS 本地演示和 Python 推理/服务。
+
+## 本地真机部署（iOS）
+1. 用 Xcode 打开 `ml-fastvlm/app/FastVLM.xcodeproj`
+2. 选择目标设备为你的 iPhone，设置你的签名团队
+3. 运行（Cmd+R）
+
+## Python 推理（可选）
+```bash
+cd ml-fastvlm
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e .
+python predict.py
+```
+
+## 仓库结构（节选）
+- ml-fastvlm/app/FastVLM App: iOS/macOS SwiftUI 应用
+- ml-fastvlm/llava: Python LLaVA 相关实现
+- .github/workflows: CI/Release 配置（默认手动触发）
+
